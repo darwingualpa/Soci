@@ -120,5 +120,48 @@ namespace Soci.Controllers
                 return View();
             }
         }
+        public IActionResult Desactivar(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+
+                return RedirectToAction("Index");
+            Socio socio = _applicationDbContext.Socio.Where(D => D.Cedula == id).FirstOrDefault();
+            try
+            {
+                socio.Estado = 0;
+                _applicationDbContext.Update(socio);
+                _applicationDbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+                return RedirectToActionPermanent("Index");
+            }
+
+            return RedirectToActionPermanent("Index");
+
+        }
+       
+        public IActionResult Activar(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+
+                return RedirectToAction("Index");
+            Socio socio = _applicationDbContext.Socio.Where(D => D.Cedula == id).FirstOrDefault();
+            try
+            {
+                socio.Estado = 1;
+                _applicationDbContext.Update(socio);
+                _applicationDbContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine(ex.Message);
+                return RedirectToActionPermanent("Index");
+            }
+
+            return RedirectToActionPermanent("Index");
+
+        }
     }
 }
