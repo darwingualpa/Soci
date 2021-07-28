@@ -13,6 +13,7 @@ namespace Soci.Data
             : base(options)
         {
         }
+        public virtual DbSet<Cuentum> Cuenta { get; set; }
         public virtual DbSet<Socio> Socio { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -71,6 +72,5 @@ namespace Soci.Data
                     .IsUnicode(false);
             });
         }
-        public DbSet<Soci.Models.Cuentum> Cuentum { get; set; }
     }
 }

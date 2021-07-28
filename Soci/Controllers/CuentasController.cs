@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Soci.Controllers
 {
-    public class CuentaController : Controller
+    public class CuentasController : Controller
     {
         private readonly ApplicationDbContext _applicationDbContext;
-        public CuentaController(ApplicationDbContext applicationDbContext)
+        public CuentasController(ApplicationDbContext applicationDbContext)
         {
             _applicationDbContext = applicationDbContext;
         }
@@ -20,7 +20,7 @@ namespace Soci.Controllers
         {
             List<Cuentum> cuentas = new List<Cuentum>();
 
-            cuentas = _applicationDbContext.Cuentum.ToList();
+            cuentas = _applicationDbContext.Cuenta.ToList();
 
             return View(cuentas);
         }
